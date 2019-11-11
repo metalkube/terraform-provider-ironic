@@ -3,6 +3,7 @@ package ironic
 import (
 	"github.com/gophercloud/gophercloud/openstack/baremetal/v1/ports"
 	"github.com/hashicorp/terraform/helper/schema"
+	"time"
 )
 
 func resourcePortV1() *schema.Resource {
@@ -45,6 +46,13 @@ func resourcePortV1() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 			},
+		},
+
+		Timeouts: &schema.ResourceTimeout{
+			Create: schema.DefaultTimeout(10 * time.Minute),
+			Read:   schema.DefaultTimeout(10 * time.Minute),
+			Update: schema.DefaultTimeout(10 * time.Minute),
+			Delete: schema.DefaultTimeout(10 * time.Minute),
 		},
 	}
 }
